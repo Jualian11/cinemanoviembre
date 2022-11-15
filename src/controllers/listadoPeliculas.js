@@ -52,15 +52,42 @@ let peliculas=[
     }
 ]
 
-let fila=document.getElementById("fila")
+//creamos una referencia al espacio HTML donde queremos
+//hacer el render(PINTAR ETIQUETAS)
+let etiquetaFila=document.getElementById("fila")
 
+//SI YA TENGO DATOS QUE NORMALMENTE LLEGAN AL FRONT
+//COMO UN ARREGLO DE OBJETOS DEBEMOS RECORRER Y DEPURAR
+//DUCHA INFORMACION
 peliculas.forEach(function(pelicula){
-    console.log(pelicula.poster)
+    //PARA PINTAR LA INFORMACION DE CADA PELICULA
+    //DEBEMOS APLICAR UNA TECNICA CONOCIDA COMO TRAVERSING
+    //TRAVERSING=CREAR ETIQUETAS DE HTML DESDE JS
+    let columna=document.createElement("div")
+    columna.classList.add("col")
 
-    let foto=document.createElement("img")
-    foto.src=pelicula.poster
-    foto.classList.add("img-fluid","w-100")
+    let tarjeta=document.createElement("div")
+    tarjeta.classList.add("card","h-100","shadow")
 
-    fila.appendChild(foto)
+    let poster=document.createElement("img")
+    poster.classList.add("img-fluid","w-100")
+    poster.src=pelicula.poster
+
+    let nombre=document.createElement("h3")
+    nombre.classList.add("text-center","fw-bold","subrayado")
+    nombre.textContent=pelicula.nombre
+
+    let duracion=document.createElement("h5")
+    duracion.classList.add("text-start")
+    duracion.textContent="Duración: "+pelicula.duracion+" Min"
+
+    //PADRES E HIJOS
+    etiquetaFila.appendChild(columna)
+    columna.appendChild(tarjeta)
+    tarjeta.appendChild(poster)
+    tarjeta.appendChild(nombre)
+    tarjeta.appendChild(duracion)
+
+    
 
 })
